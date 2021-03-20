@@ -37,10 +37,11 @@ result [A B A D]
 
 */
 
-// It will be perfect if we can have O(1) or O(n), but the time complexity of this algorithm is exponential. ;(
+// It will be perfect if we can have O(1) or O(n), but the time complexity of this algorithm is quodratic O(n^2). ;(
 
 function longestSubseq(s1, s2, s1StartIdx = 0, s2StartIdx = 0, memo) {
   if (s1StartIdx >= s1.length || s2StartIdx >= s2.length) return '';
+
   if (memo == null) {
     memo = (new Array(s1.length))
     memo.fill(null);
@@ -76,6 +77,5 @@ function findLongest(arr) {
     }
   }
 }
-
 
 console.log('result', longestSubseq("ABAZDC", "BACBAD"));
