@@ -40,7 +40,10 @@ result [A B A D]
 // It will be perfect if we can have O(1) or O(n), but the time complexity of this algorithm is exponential. ;(
 
 function longestSubseq(s1, s2, s1StartIdx = 0, s2StartIdx = 0, memo) {
+  if (s1StartIdx >= s1.length || s2StartIdx >= s2.length) return '';
   if (memo == null) {
+    memo = (new Array(s1.length))
+    memo.fill(null);
     memo = new Array(s1.length).map(row => new Array(s2.length));
   } else if (memo[s1StartIdx][s2StartIdx] != null) {
     memo[s1StartIdx][s2StartIdx];
