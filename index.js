@@ -37,7 +37,14 @@ result [A B A D]
 
 */
 
-function longestSubseq(s1, s2, s1StartIdx = 0, s2StartIdx = 0) {
+// It will be perfect if we can have O(1) or O(n), but the time complexity of this algorithm is exponential. ;(
+
+function longestSubseq(s1, s2, s1StartIdx = 0, s2StartIdx = 0, memo) {
+  if (memo == null) {
+    memo = new Array(s1.length).map(row => new Array(s2.length));
+  } else if (memo[s1StartIdx][s2StartIdx] != null) {
+    memo[s1StartIdx][s2StartIdx];
+  }
   const results = [];
 
   for (let s1Idx = s1StartIdx; s1Idx < s1.length; s1Idx++) {
@@ -47,11 +54,13 @@ function longestSubseq(s1, s2, s1StartIdx = 0, s2StartIdx = 0) {
     let result = [];
 
     if (s2Idx !== -1) {
-      result.push(s1Char, ...longestSubseq(s1, s2, s1Idx + 1, s2Idx + 1));
+      result.push(s1Char, ...longestSubseq(s1, s2, s1Idx + 1, s2Idx + 1, memo));
     }
     results.push(result);
   }
   const longest = findLongest(results);
+
+  memo[s1StartIdx][s2StartIdx] = longest;
   return longest.join('');
 }
 
