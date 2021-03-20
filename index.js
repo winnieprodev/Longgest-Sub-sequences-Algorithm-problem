@@ -1,3 +1,42 @@
+// "ABAZDC", "BACBAD" => "ABAD"
+/*
+---
+s1Idx = 0
+s1Char = A
+
+s2Idx = 1
+result = [A]
+
+---
+s1Idx = 1
+s1Char = B
+
+s2Idx = 3
+result = [A B]
+
+---
+s1Idx = 2
+s1Char = A
+
+s2Idx = 4
+result [A B A]
+
+---
+s1Idx = 3
+s1Char = Z
+
+s2Idx = -1
+result []
+
+---
+s1Idx = 4
+s1Char = D
+
+s2Idx = 5
+result [A B A D]
+
+*/
+
 function longestSubseq(s1, s2, s1StartIdx = 0, s2StartIdx = 0) {
   const results = [];
 
@@ -20,8 +59,11 @@ function findLongest(arr) {
   let longest = [];
 
   for (let candidate of arr) {
-    if (candidatte.length > longest.length) {
+    if (candidate.length > longest.length) {
       longest = candidate;
     }
   }
 }
+
+
+console.log('result', longestSubseq("ABAZDC", "BACBAD"));
